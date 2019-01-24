@@ -103,21 +103,21 @@ all_players %>%
   gather(key="measure",value="value",-c(name,`Start Date`)) %>%
   ggplot() +
   facet_grid(measure ~ .,switch="both") +
-  geom_line(aes(x=`Start Date`,y=value,colour=name),show.legend = FALSE) +
+  geom_line(aes(x=`Start Date`,y=value,colour=name),show.legend = FALSE,size=1.5) +
   scale_x_date("",limits=(as.Date(c('1/1/2015', '24/1/2019'), format="%d/%m/%Y"))) +
-  geom_text_repel(data=player_labels,aes(x=`Start Date`,y=value,colour=name,label=name),show.legend = FALSE) +
+  geom_text_repel(data=player_labels,aes(x=`Start Date`,y=value,colour=name,label=name),size=5,show.legend = FALSE) +
   scale_colour_brewer(palette="Dark2",type="qual") +
   scale_y_continuous("") + 
   theme_minimal() +
   theme(text=element_text(colour="grey50"),
-        axis.text=element_text(colour="grey50"),
+        axis.text=element_text(colour="grey50",size=12),
         panel.grid=element_blank(),
-        strip.text=element_text(colour="grey50")) +
+        strip.text=element_text(colour="grey50",size=15)) +
   labs(title="Broad is less good now than in 2015-2016, but he still looks competitive with other English bowlers",
        subtitle="Measures here are calculated based on total runs/wickets/balls across the most recent 10 games played",
        caption="Data source: ESPNcricinfo - Design by @stevejburr")
 
-ggsave("lines.png",height=12,width=12)
+ggsave("lines_.png",height=12,width=12)
 
 #create a labelling dataset with max start date by player
 #use ggrepel to show on a graph
